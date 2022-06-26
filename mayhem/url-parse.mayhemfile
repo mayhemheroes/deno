@@ -1,0 +1,7 @@
+project: deno
+target: url-parse
+
+cmds:
+  - cmd: /url-parse
+  - cmd: /url-parse_no_inst @@
+    libfuzzer: false
