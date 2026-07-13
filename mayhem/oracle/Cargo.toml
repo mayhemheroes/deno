@@ -1,0 +1,12 @@
+[package]
+name = "url-oracle"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+url = "=2.5.7"
+
+# Prevent this from interfering with the deno workspace
+[workspace]
+members = ["."]

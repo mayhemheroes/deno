@@ -1,0 +1,6 @@
+project: deno
+target: url-parse
+
+cmds:
+  - cmd: /mayhem/url-parse
+    libfuzzer: true

@@ -1,0 +1,29 @@
+[package]
+name = "deno_url-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+arbitrary = { version = "1", features = ["derive"] }
+# The historical mayhemheroes harness fuzzed `deno_core::url`, which is a re-export
+# of the `url` crate. Depend on `url` directly (same code path, pinned to the version
+# in deno's Cargo.lock) so the fuzz build does not have to compile deno_core/V8.
+url = "=2.5.7"
+
+# Prevent this from interfering with the deno workspace
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "url-parse"
+path = "fuzz_targets/url-parse.rs"
+test = false
+doc = false
+
+[profile.release]
+debug = true
